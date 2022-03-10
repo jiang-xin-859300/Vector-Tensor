@@ -1,0 +1,10 @@
+Linux命令
+pwd  显示当前目录
+mkdir 创建文件夹
+cat  readme.txt 输出文件内容
+
+
+
+vim编辑器
+i  输入模式 insert
+:wq 退出  

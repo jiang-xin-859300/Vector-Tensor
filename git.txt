@@ -1,0 +1,158 @@
+用户名和邮箱代表身份
+git config --global user.name ""
+git config --global user.email ""
+
+git add  . (.前有空格，添加所有文件到暂存区)
+git add readme.txt （添加具体文件到暂存区）
+
+git commit -m "" 告诉仓库，文件已经提交到仓库
+
+git status 查看是否还有文件未提交
+
+git restore readme.txt 恢复文件
+git diff readme.txt 可以看到文件的修改内容
+
+git reset --hard HEAD^        回退到上个版本
+git reset --hard HEAD^^     回退到前个版本
+git reser --hard HEAD~100  回退到前100个版本
+
+git  reflog 可以查看所有的日志（包括回退的过程） 查到对应的版本号后  eg. 6fcfc89
+git reset --hard  6fcfc89  
+
+工作区：就是你在电脑上看到的目录，比如目录下testgit里的文件(.git隐藏目录版本库除外)。或者以后需要再新建的目录文件等等都属于工作区范畴。
+版本库(Repository)：工作区有一个隐藏目录.git,这个不属于工作区，这是版本库。其中版本库里面存了很多东西，其中最重要的就是stage(暂存区)，还有Git为我们自动创建了第一个分支master,以及指向master的一个指针HEAD。
+
+将git提交到版本库有两步：
+第一步：使用git add将文件添加到暂存区
+第二步：使用git commit提交更改，实际上就是将暂存区的内容提交到当前分支上
+
+git checkout  --  readme.txt	撤销在readme.txt上的修改，这种撤销有如下两种情况
+1.readme.txt自动修改后，还没有放到暂存区，使用 撤销修改就回到和版本库一模一样的状态。
+2.另外一种是readme.txt已经放入暂存区了，接着又作了修改，撤销修改就回到添加暂存区后的状态。
+
+注意：命令git checkout -- readme.txt 中的 -- 很重要，如果没有 -- 的话，那么命令变成创建分支了。
+
+
+github push
+
+create a new repository on the command line
+echo "# test" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/jiang-xin-859300/test.git
+git push -u origin main
+
+push an existing repository from the command line
+git remote add origin https://github.com/jiang-xin-859300/test.git
+git branch -M main
+git push -u origin main
+
+把本地库的内容推送到远程，使用 git push命令，实际上是把当前分支master推送到远程。
+由于远程库是空的，我们第一次推送master分支时，加上了 –u参数，Git不但会把本地的m
+aster分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支
+关联起来，在以后的推送或者拉取时就可以简化命令。推送成功后，可以立刻在github页面
+中看到远程库的内容已经和本地一模一样了，上面的要输入github的用户名和密码如下所示：
+
+
+以上都是用的master分支，下面来创建dev分支，然后切换到dev分支上
+git branch dev -b 表示创建并切换相当于以下两条命令
+git branch deb
+git checkout dev
+在dev分支上提交后回到main分支，可以看到main分支上内容没有改变
+现在我们可以把dev分支上的内容合并到分支master上了，可以在master分支上，使用如下命令 git merge dev 如下所示：
+git merge 命令用于合并指定分支到当前分支上，合并后，再查看可以看到和dev最新提交的是完全一样的。
+
+总结创建与合并分支命令如下：
+
+　　查看分支：git branch
+
+　　创建分支：git branch name
+
+　　切换分支：git checkout name
+
+　　创建+切换分支：git checkout –b name
+
+　　合并某分支到当前分支：git merge name
+
+　　删除分支：git branch –d name
+
+
+　3.分支管理策略。
+
+　　通常合并分支时，git一般使用”Fast forward”模式，在这种模式下，删除分支后，会丢掉分支信息，现在我们来使用带参数 –no-ff来禁用”Fast forward”模式。首先我们来做demo演示下：
+
+创建一个dev分支。
+修改readme.txt内容。
+添加到暂存区。
+切换回主分支(master)。
+合并dev分支，使用命令 git merge –no-ff  -m “注释” dev
+查看历史记录
+
+git push origin master		//git push origin dev(次分支不必要同步，可以先合并到主分支再push)
+首先，可以试图用git push origin branch-name推送自己的修改.
+如果推送失败，则因为远程分支比你的本地更新早，需要先用git pull试图合并。
+如果合并有冲突，则需要解决冲突，并在本地提交。再用git push origin branch-name推送
+
+　　mkdir：         XX (创建一个空目录 XX指目录名)
+
+　　pwd：          显示当前目录的路径。
+
+　　git init          把当前的目录变成可以管理的git仓库，生成隐藏.git文件。
+
+　　git add XX       把xx文件添加到暂存区去。
+
+　　git commit –m “XX”  提交文件 –m 后面的是注释。
+
+　　git status        查看仓库状态
+
+　　git diff  XX      查看XX文件修改了那些内容
+
+　　git log          查看历史记录
+
+　　git reset  --hard HEAD^ 或者 git reset  --hard HEAD~ 回退到上一个版本
+
+　　(如果想回退到100个版本，使用git reset –hard HEAD~100 )
+
+　　cat XX         查看XX文件内容
+
+　　git reflog       查看历史记录的版本号id
+
+　　git checkout -- XX  把XX文件在工作区的修改全部撤销。
+
+　　git rm XX          删除XX文件
+
+　　git remote add origin https://github.com/tugenhua0707/testgit 关联一个远程库
+
+　　git push –u(第一次要用-u 以后不需要) origin master 把当前master分支推送到远程库
+
+　　git clone https://github.com/tugenhua0707/testgit  从远程库中克隆
+
+　　git checkout –b dev  创建dev分支 并切换到dev分支上
+
+　　git branch  查看当前所有的分支
+
+　　git checkout master 切换回master分支
+
+　　git merge dev    在当前的分支上合并dev分支
+
+　　git branch –d dev 删除dev分支
+
+　　git branch name  创建分支
+
+　　git stash 把当前的工作隐藏起来 等以后恢复现场后继续工作
+
+　　git stash list 查看所有被隐藏的文件列表
+
+　　git stash apply 恢复被隐藏的文件，但是内容不删除
+
+　　git stash drop 删除文件
+
+　　git stash pop 恢复文件的同时 也删除文件
+
+　　git remote 查看远程库的信息
+
+　　git remote –v 查看远程库的详细信息
+
+　　git push origin master  Git会把master分支推送到远程库对应的远程分支上
