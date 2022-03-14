@@ -1,0 +1,25 @@
+创建环境我相信很多人都会了。
+
+conda create -n 虚拟环境名字 python==x.x
+  假如你有一个A环境，希望复制一个和A环境一样的环境，就可以用下面的：
+ 
+
+conda create -n B --clone A
+不过我一般是复制base环境，然后再随便装：
+
+conda create -n B --clone base
+移除环境：
+
+conda remove -n env_name --all # env_name是你要删除的环境名
+查看conda现有的环境：
+conda-env list
+激活环境
+conda  activate  xxx
+释放环境
+conda  deactivate
+————————————————
+版权声明：本文为CSDN博主「吴天德少侠」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/sdhdsf132452/article/details/113523731
+
+
+Linux
