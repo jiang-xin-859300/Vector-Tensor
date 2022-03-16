@@ -1,0 +1,44 @@
+在VOCDevkit/VOC2007文件夹运行如下命令，其中images为我们存放图片的文件夹，predefined_classes.txt为放置我们类别名的文件夹
+labelimg JPEG   Images predefined_classes.txt 开始标注图片
+
+标注格式转化
+运行preprocess.py来转化xml文件为txt文件
+
+
+训练
+修改train.py    cfg models/cutton.yaml 和data   data/cutton.yaml中的参数，修改训练的预处理模型，已知yolov5s最为轻量，得出的模型检测也最快。
+调整其他参数 img（图片大小）,batch-size（一次喂入的数据量）,epochs（迭代轮数）等参数
+运行train.py
+
+训练好后模型会在runs中的train中
+best是最好的模型，last是最后一次的模型
+
+推理
+修改detect.py  中的参数，将weights改为训练好的模型，source改为对应的数据路径，0为摄像头
+最终的结果会在runs的detect中
+
+后续：
+如何将模型部署到树莓派上，如何将整个工作流程与检测模型串联起来，如何提高检测的速度（降低除了检测外不必要的过程）
+
+
+
+
+
+推理
+"""
+--weights:权重的路径地址
+--source:测试数据，可以是图片/视频路径，也可以是'0'(电脑自带摄像头),也可以是rtsp等视频流
+--output:网络预测之后的图片/视频的保存路径
+--img-size:网络输入图片大小
+--conf-thres:置信度阈值
+--iou-thres:做nms的iou阈值
+--device:是用GPU还是CPU做推理
+--view-img:是否展示预测之后的图片/视频，默认False
+--save-txt:是否将预测的框坐标以txt文件形式保存，默认False
+--classes:设置只保留某一部分类别，形如0或者0 2 3
+--agnostic-nms:进行nms是否也去除不同类别之间的框，默认False
+--augment:推理的时候进行多尺度，翻转等操作(TTA)推理
+--update:如果为True，则对所有模型进行strip_optimizer操作，去除pt文件中的优化器等信息，默认为False
+--project：推理的结果保存在runs/detect目录下
+--name：结果保存的文件夹名称
+"""
