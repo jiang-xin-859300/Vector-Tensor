@@ -2,6 +2,7 @@
 // By Arduino User JohnChi
 // August 17, 2014
 // Public Domain
+#include<Arduino.h>
 #include<Wire.h>
 const int MPU_addr=0x68;  // I2C address of the MPU-6050
 int16_t AcX,AcY,AcZ,Tmp,GyX,GyY,GyZ;
