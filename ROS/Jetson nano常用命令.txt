@@ -1,0 +1,29 @@
+修改屏幕分辨率   xrandr --fb 1280x720
+配置网络：
+1.修改~/.bashrc中的配置
+2.修改 /etc/hosts 中的设置并重启
+固定IP: 
+vmware
+192.168.153.192	REDMI
+192.168.123.147	ARC
+Jetson nano
+192.168.153.162 REDMI
+192.168.123.108 ARC
+
+
+f1tenth仿真环境
+roslaunch f1tenth_simulator simulator.launch
+rosrun ros_mycode wall_follow_pid 
+
+/etc/ros
+
+chmod 命令更改文件/文件夹的属性:
+
+chmod 666 file/folder 表示所有用户都可以读写但不能执行文件/文件夹;
+chmod 777 file/folder 允许所有用户的所有操作(一般的暴力解决办法)
+chmod 744 file/folder 只允许用户(所有者)执行所有操作;组和其他用户只允许阅读
+
+作者：世外大帝
+链接：https://www.jianshu.com/p/51a7c6bb6bb7
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

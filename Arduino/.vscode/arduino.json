@@ -1,6 +1,7 @@
 {
-    "port": "COM8",
+    "port": "COM9",
     "board": "arduino:avr:mega",
-    "sketch": "LCD\\LCD.ino",
-    "configuration": "cpu=atmega2560"
+    "sketch": "L298N_motor\\L298N_motor.ino",
+    "configuration": "cpu=atmega2560",
+    "programmer": "arduino:avrispmkii"
 }

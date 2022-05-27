@@ -1,12 +1,14 @@
-在VOCDevkit/VOC2007文件夹运行如下命令，其中images为我们存放图片的文件夹，predefined_classes.txt为放置我们类别名的文件夹
-labelimg JPEG   Images predefined_classes.txt 开始标注图片
+在VOCDevkit/VOC2007文件夹运行如下命令，其中images为我们存放图片的文件夹，predefined_classes.txt为放置我们类别名的文件夹，在使用时可以进行修改
+
+labelimg   JPEGImages predefined_classes.txt 开始标注图片
 
 标注格式转化
-运行preprocess.py来转化xml文件为txt文件
+更改并运行preprocess.py来转化xml文件为txt文件
 
 
 训练
-修改train.py    cfg models/cutton.yaml 和data   data/cutton.yaml中的参数，修改训练的预处理模型，已知yolov5s最为轻量，得出的模型检测也最快。
+修改train.py    cfg models/cutton.yaml 和data   data/cutton.yaml中的参数，
+修改训练的预处理模型，已知yolov5s最为轻量，得出的模型检测也最快。
 调整其他参数 img（图片大小）,batch-size（一次喂入的数据量）,epochs（迭代轮数）等参数
 运行train.py
 
